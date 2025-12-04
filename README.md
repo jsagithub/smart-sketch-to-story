@@ -7,4 +7,7 @@ A system that takes a hand-drawn sketch, identifies what's in it, then generates
 - Check CNN predictions:
   - Add an image in data/sketches_raw
   - Run prediction script: python cnn/predict.py
-- Generate stories by running rnn/story_generator_templates.py
+- Generate stories dataset by running rnn/story_generator_templates.py
+- Train RNN by running python rnn/train_rnn.py
+- Check RNN predictions:
+  - Run prediction script: python rnn/inference_rnn.py
