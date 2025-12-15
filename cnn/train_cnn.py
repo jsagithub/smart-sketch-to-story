@@ -1,3 +1,5 @@
+import json
+
 import torch
 import torch.nn as nn
 from torch.optim import Adam
@@ -81,4 +83,10 @@ for epoch in range(epochs):
     print(f"Epoch {epoch + 1}/{epochs} - Loss: {total_loss:.3f} - Val Acc: {acc:.3f}")
 
 torch.save(model.state_dict(), "cnn_best.pt")
+idx_to_class = {v: k for k, v in train_set.class_to_idx.items()}
+
+with open("cnn/idx_to_class.json", "w") as f:
+    json.dump(idx_to_class, f, indent=2)
+
+print("Saved class mapping to cnn/idx_to_class.json")
 print("Model saved!")
