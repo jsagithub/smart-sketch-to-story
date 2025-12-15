@@ -1,13 +1,13 @@
 import torch
-from train_rnn import StoryGenerator, StoryDataset, DEVICE
+from .train_rnn import StoryGenerator, StoryDataset, DEVICE
 
 
 ######################################################################
 # Load trained model + vocab
 ######################################################################
 
-def load_resources(jsonl_path="../data/stories/story_dataset.jsonl",
-                   model_path="rnn_checkpoints/story_rnn.pt"):
+def load_resources(jsonl_path="data/stories/story_dataset.jsonl",
+                   model_path="rnn/rnn_checkpoints/story_rnn.pt"):
 
     # Load dataset (for vocab + object map)
     dataset = StoryDataset(jsonl_path)
@@ -90,17 +90,3 @@ def generate_story(model, dataset, objects, max_len=30):
     # Convert ids → words
     return ids_to_sentence(generated, dataset.idx2word)
 
-
-######################################################################
-# Example usage
-######################################################################
-
-if __name__ == "__main__":
-    model, dataset = load_resources()
-
-    # Try a few object lists:
-    test_objects = ["cat", "moon"]
-
-    story = generate_story(model, dataset, test_objects)
-    print("Objects:", test_objects)
-    print("Generated story:", story)
